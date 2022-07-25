@@ -1,10 +1,14 @@
-import { Information, Data, Block } from './styles.js'
+import { Titles, Data, Block } from './styles.js'
+
+import { useData } from '../../hooks/DataContext.js'
 
 export default function Table() {
+	const { data } = useData()
+
 	return (
 		<div>
 
-			<Information>
+			<Titles>
 				
 				<div></div>
 
@@ -22,35 +26,66 @@ export default function Table() {
 					<tr style={{ paddingLeft: 35 }} >
 						<td>Valor</td>
 					</tr>
-					<tr style={{ paddingRight: 120 }} >
+					<tr style={{ paddingRight: 174 }} >
 						<td>Descrição</td>
 					</tr>
 				</table>
 
-			</Information>
+			</Titles>
 
-			<div style={{ display: 'flex' }} >
-				<Block></Block>
+			{ 
+				data ? data.map( info => (
 
-				<Data>
-					<tr style={{ paddingLeft: 72, borderLeft: 'black' }} >
-						<td></td>
-					</tr>
-					<tr style={{ paddingRight: 68 }} >
-						<td></td>
-					</tr>
+					<div style={{ display: 'flex' }} key={info.id} >
+						<Block></Block>
 
-					<tr style={{ paddingLeft: 65 }}>
-						<td></td>
-					</tr>
-					<tr style={{ paddingRight: 63 }} >
-						<td></td>
-					</tr>
-					<tr style={{ paddingRight: 176 }} >
-						<td></td>
-					</tr>
-				</Data>
-			</div>
+						<Data>
+							<tr style={{ borderLeft: 'black', width: 77, justifyContent: 'flex-start' }} >
+								<td>{info.id}</td>
+							</tr>
+							<tr style={{ width: 73, justifyContent: 'flex-start' }} >
+								<td>{info.banco}</td>
+							</tr>
+							<tr style={{ width: 70 }} >
+								<td>{info.data_transacao}</td>
+							</tr>
+							<tr style={{ width: 68, justifyContent: 'flex-end' }} >
+								<td>{info.valor}</td>
+							</tr>
+							<tr style={{ width: 235, justifyContent: 'flex-start', fontSize: '50%' }}>
+								<td>{info.desc_lanc}</td>
+							</tr>
+						</Data>
+					</div>
+
+					))
+
+					:
+
+					<div style={{ display: 'flex' }} >
+						<Block></Block>
+
+						<Data>
+							<tr style={{ borderLeft: 'black', width: 77 }} >
+								<td></td>
+							</tr>
+							<tr style={{ width: 73 }} >
+								<td></td>
+							</tr>
+							<tr style={{ width: 70, justifyContent: 'flex-end', paddingRight: 2 }} >
+								<td></td>
+							</tr>
+							<tr style={{ width: 68, justifyContent: 'flex-start', paddingLeft: 4 }} >
+								<td></td>
+							</tr>
+							<tr style={{ width: 181 }}>
+								<td></td>
+							</tr>
+						</Data>
+					</div>
+			}
+
+			
 		</div>
 	)
 }

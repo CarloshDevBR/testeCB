@@ -1,6 +1,6 @@
 import { Container, Painel } from './styles.js'
 
-import { Menu, BankData } from './components'
+import { Menu, BankData, Info } from './components'
 
 function App() {
   return (
@@ -10,6 +10,8 @@ function App() {
         <Menu />
         
         <BankData />
+
+        <Info />
       </Painel>
       
     </Container>

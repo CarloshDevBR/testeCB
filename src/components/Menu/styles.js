@@ -3,14 +3,14 @@ import styled from 'styled-components'
 export const Container = styled.div `
 	width: 100%;
 	height: 95px;
-	gap: 8px;
 
-	display: flex;
+	display: flex;	
 	align-items: center;
 	justify-content: space-evenly;
+	gap: 8px;
 `
 
-export const FinancialAccount = styled.div `
+export const FinancialAccount = styled.form `
 	height: 70px;
 	width: 550px;
 
@@ -25,24 +25,20 @@ export const FinancialAccount = styled.div `
 		font-size: 12px;
 		font-weight: 500;
 
-		align-self: flex-start;
-		transform: translateY(-10px);
+		transform: translateY(-32px);
 		position: absolute;
 		margin-right: 425px;
 		padding: 0 3px 0 3px;
 
 		background-color: #D0D0D0;
 		font-size: .8rem;
-		color: blue;
+		color: #0000b3;
 	}
 `
 
 export const SearchBox = styled.div `
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	justify-content: space-around;
-
+	
 	border: groove;
 	border-left: 2px solid #303838;
 	border-top: 2px solid #303838;
@@ -60,6 +56,7 @@ export const SearchBox = styled.div `
 		border-left: groove;
 		border-top: 1px solid #303838;
 		background-color: #D0D0D0;
+
 		cursor: pointer;
 	}
 
@@ -67,13 +64,14 @@ export const SearchBox = styled.div `
 
 export const SearchBar = styled.input `
 	width: 430px; 
-	height: 26px; 
+	height: 26px;
+
 	border: groove;
 	border-left: 2px solid #303838;
 	border-top: 2px solid #303838;
 `
 
-export const DataReconciliation = styled.div `
+export const DataReconciliation = styled.form `
 	height: 70px;
 	padding: 8px;
 	
@@ -86,22 +84,20 @@ export const DataReconciliation = styled.div `
 		font-size: 12px;
 		font-weight: 500;
 		
-		align-self: flex-start;
-		transform: translateY(-17px);
+		transform: translateY(-32px);
 		position: absolute;	
 		margin-right: 30px;
 		padding: 0 3px 0 3px;
 		
 		background-color: #D0D0D0;
-		color: blue;
+		color: #0000b3;
 	}
 
 	input {
 		width: 120px;
 
 		border: groove;
-		color: blue;
-
+		color: #0000b3;
 		border-left: 2px solid #303838;
 		border-top: 2px solid #303838;
 
@@ -114,13 +110,14 @@ export const DataReconciliation = styled.div `
 	}
 `
 
-export const MovementPeriod = styled.div `
+export const MovementPeriod = styled.form `
 	height: 70px;
 
 	display: flex;
-	align-items: center;
-	gap: 10px;
-	padding: 8px;
+	justify-content: flex-end;
+	flex-direction: column;
+	padding: 0 8px 0 8px;
+	gap: 4px;
 	
 	border: groove;
 
@@ -128,26 +125,58 @@ export const MovementPeriod = styled.div `
 		font-size: 12px;
 		font-weight: 500;
 		
-		align-self: flex-start;
-		transform: translateY(-17px);
+		transform: translateY(-57px);
 		position: absolute;
 		background-color: #D0D0D0;
 		margin-right: 40px;
 		padding: 0 3px 0 3px;
 
-		color: blue;
+		color: #0000b3;
 	}
 
+	label {
+		margin-bottom: 8px;
+		width: 12px;
+		height: 10px;
+
+		cursor: pointer;
+	}
+
+	button {
+		padding: 0 2px 0 2px;
+		margin-left: 10px;
+		margin-bottom: 2px;
+
+		border: groove;
+		border-left: 2px solid #303838;
+		border-top: 2px solid #303838;
+
+		cursor: pointer;
+
+		&:hover{
+			opacity: .7;
+		}
+
+		&:active{
+			opacity: .3;
+		}
+	}
+`
+
+export const BoxDate = styled.div `
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	
 	input {	
 		width: 120px;
 		height: 22px;
 
 		border: groove;
-		color: blue;
+		color: #0000b3;
 
 		border-left: 2px solid #303838;
 		border-top: 2px solid #303838;
-
 	}
 
 	input[type="date"]::-webkit-inner-spin-button,
@@ -155,9 +184,15 @@ export const MovementPeriod = styled.div `
     	display: none;
     	-webkit-appearance: none;
 	}
+
+	p {
+		color: #0000b3; 
+		font-size: 12px;
+	}
+
 `
 
-export const Reconcile = styled.div `
+export const Reconcile = styled.form `
 	height: 70px;
 
 	display: grid;
@@ -170,20 +205,20 @@ export const Reconcile = styled.div `
 		font-size: 12px;
 		font-weight: 500;
 		
-		align-self: flex-start;
-		transform: translateY(-17px);
+		transform: translateY(-32px);
 		position: absolute;
 		margin-right: 80px;
 		padding: 0 3px 0 3px;
 
 		background-color: #D0D0D0;
-		color: blue;
+		color: #0000b3;
 	}
 
 	select {
 		width: 130px;
-		background-color: white;
 
+		background-color: white;
+		border: groove;
 		border-left: 2px solid #303838;
 		border-top: 2px solid #303838;
 	}

@@ -1,10 +1,13 @@
-import { Information, Data, Block } from './styles.js'
+import { useState } from 'react'
+import { Titles, Data, Block } from './styles.js'
 
 export default function Table() {
+	const [ data ] = useState()
+
 	return (
 		<div>
 
-			<Information>
+			<Titles>
 				
 				<div></div>
 
@@ -27,30 +30,58 @@ export default function Table() {
 					</tr>
 				</table>
 
-			</Information>
+			</Titles>
 
-			<div style={{ display: 'flex' }} >
-				<Block></Block>
+			{
+				data ? data.map(info => (
+					<div style={{ display: 'flex' }} >
+						<Block></Block>
 
-				<Data>
-					<tr style={{ paddingLeft: 61, borderLeft: 'black' }} >
-						<td></td>
-					</tr>
-					<tr style={{ paddingRight: 72 }} >
-						<td></td>
-					</tr>
+						<Data>
+							<tr style={{ borderLeft: 'black', width: 66 }} >
+								<td></td>
+							</tr>
+							<tr style={{ width: 77, justifyContent: 'flex-start' }} >
+								<td></td>
+							</tr>
+							<tr style={{ width: 83, justifyContent: 'flex-end' }} >
+								<td></td>
+							</tr>
+							<tr style={{ width: 235, justifyContent: 'flex-start' }} >
+								<td></td>
+							</tr>
+							<tr style={{ width: 73 }}>
+								<td></td>
+							</tr>
+						</Data>
+					</div>
+				))
 
-					<tr style={{ paddingLeft: 78 }}>
-						<td></td>
-					</tr>
-					<tr style={{ paddingRight: 230 }} >
-						<td></td>
-					</tr>
-					<tr style={{ paddingRight: 68 }} >
-						<td></td>
-					</tr>
-				</Data>
-			</div>
+				:
+
+				<div style={{ display: 'flex' }} >
+						<Block></Block>
+
+						<Data>
+							<tr style={{ borderLeft: 'black', width: 66 }} >
+								<td></td>
+							</tr>
+							<tr style={{ width: 77 }} >
+								<td></td>
+							</tr>
+							<tr style={{ width: 83 }} >
+								<td></td>
+							</tr>
+							<tr style={{ width: 235 }} >
+								<td></td>
+							</tr>
+							<tr style={{ width: 73 }}>
+								<td></td>
+							</tr>
+						</Data>
+					</div>
+			}
+
 		</div>
 	)
 }

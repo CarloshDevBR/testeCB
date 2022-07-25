@@ -16,7 +16,7 @@ export const PreviousBalance = styled.div `
 	font-weight: 700;
 
 	p {
-		color: blue;
+		color: #0000b3;
 	}
 `
 
@@ -41,17 +41,18 @@ export const Status = styled.div `
 	display:flex;
 	justify-content: space-around;
 	gap: 16px;
-	margin-top: 3px;
+	margin-top: 4px;
 `
 
 export const BoxOne = styled.div `
 	width: 50%;
-	display: flex;
 
 	border: groove;
 	border-top: 2px solid #303838;
 	border-left: 2px solid #303838;
 	background-color: white;
+	
+	overflow: auto;
 	
 	p {
 		font-size: 13px;
@@ -66,6 +67,8 @@ export const BoxOne = styled.div `
 
 export const BoxTwo = styled.div `
 	width: 50%;
+
+	overflow: auto;
 	
 	border: groove;
 	border-top: 2px solid #303838;

@@ -1,15 +1,10 @@
 import styled from 'styled-components'
 
-export const Information = styled.div `
+export const Titles = styled.div `
 	display: flex;
 
 	table {
 		display: flex;
-		transform: translateY(-.5px);
-		transform: translateX(-.5px);
-		position: absolute;
-		margin-left: 14px;
-
 		border: 2px solid #303838;
 		border-top: none;
 		border-left: none;
@@ -36,15 +31,19 @@ export const Information = styled.div `
 
 export const Data = styled.table `
 	display: flex;
-	transform: translateX(2px);
-	position: absolute;
-	margin-left: 14px;
+	transform: translateX(-.7px);
 
 	border: 1px groove;
 	border-top: none;
 	border-left: none;
 	
 	tr {
+		display: flex;
+		justify-content:center;
+		align-items: center;
+		
+		font-size: 12px;
+		padding: 2px;
 		border-left: 1px groove;
 	}
 
