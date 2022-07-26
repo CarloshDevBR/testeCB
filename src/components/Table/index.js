@@ -50,7 +50,7 @@ export default function Table() {
 							<tr style={{ width: 235, justifyContent: 'flex-start' }} >
 								<td></td>
 							</tr>
-							<tr style={{ width: 73 }}>
+							<tr style={{ width: 72 }}>
 								<td></td>
 							</tr>
 						</Data>
@@ -75,7 +75,7 @@ export default function Table() {
 							<tr style={{ width: 235 }} >
 								<td></td>
 							</tr>
-							<tr style={{ width: 73 }}>
+							<tr style={{ width: 72 }}>
 								<td></td>
 							</tr>
 						</Data>

@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 import { useData } from '../../hooks/DataContext.js'
 
@@ -6,8 +6,10 @@ import { Toaster, toast } from 'react-hot-toast'
 
 import api from '../../services/api.js'
 
-import { Container, FinancialAccount, SearchBox, SearchBar, 
-	DataReconciliation, MovementPeriod, BoxDate, Reconcile, Consult } from './styles.js'
+import { 
+	Modal, Erros, Sucess, UploadFiles, FileRemove, Container, FinancialAccount, 
+	SearchBox, SearchBar, DataReconciliation, MovementPeriod, BoxDate, Reconcile, 
+	Consult } from './styles.js'
 
 import { FcSearch } from 'react-icons/fc'
 import { ImBinoculars } from 'react-icons/im'
@@ -16,6 +18,11 @@ import { AiFillFileAdd } from 'react-icons/ai'
 export const Menu = () => {
 	const { putData } = useData()
 
+	const [ uploadedFiles, setUploadedFiles ] = useState(false)
+	const [ modal, setModal ] = useState()
+	const [ modalInfo, setModalInfo ] = useState()
+
+	const filesElement = useRef()
 	const dateOne = useRef()
 	const dateTwo = useRef()
 
@@ -29,8 +36,6 @@ export const Menu = () => {
 				})
 
 				putData(res.data)
-
-				console.log(res.data)
 
 				return res
 			}
@@ -62,112 +67,105 @@ export const Menu = () => {
 		
 	}
 
-	const filesElement = useRef();
-
-    function sendFile(e) {
+    async function sendFile(e) {
     	e.preventDefault()
 
-	    async function fetchData() {
-	    	const dataForm = new FormData()
+    	const dataForm = new FormData()
 
-		    for (const file of filesElement.current.files) {
-		      dataForm.append('files', file)
-		    }
-
-	    	const headers = {
-		    	'headers': {
-		    		'Content-Type': 'application/json'
-		    	}
-	    	}
-
-	    	const res = await api.post('/uploadfile/', dataForm, headers)
-	    		.then(res => console.log(res))
-
-	    	return res
+	    for (const file of filesElement.current.files) {
+	      dataForm.append('files', file)
 	    }
 
-	    const callFunction = fetchData()
+    	const headers = {
+	    	'headers': {
+	    		'Content-Type': 'application/json'
+	    	}
+    	}
 
-	    toast.promise(callFunction,
-			   {
-			    loading: 'Loading...',
-			    success: `Enviado com sucesso!`,
-			    error: `Não foi possível fazer o envio!`,
-			  },
-			  {
-			    style: {
-			      minWidth: '150px',
-			    },
-			    success: {
-			      duration: 5000,
-			    },
-			    error: {
-			      duration: 3000,
-			    },
-			  }
-		)
+    	await api.post('/uploadfile/', dataForm, headers)
+    	   	.then(res => setModalInfo(res.data))
+    	   	.then(() => setModal(true))
     }
 
 	return (
-		<Container>
+		<>	
+			{ modal && <Modal>
+							<p onClick={() => setModal(false)} >X</p>
+							<Erros>
+								{modalInfo.erros[0].upload.map(res => <p key={res} >{res}</p> )}
+							</Erros>
 
-			<Toaster
-			  position="bottom-right"
-			/>
+							<Sucess>
+								{modalInfo.sucesso[0].upload.map(res => <p key={res} >{res}</p> )}
+							</Sucess>
+						</Modal>
+			}
 
-			<FinancialAccount>
-				<h3>Conta Financeira</h3>
+			<UploadFiles>
+				<AiFillFileAdd />
+					{ uploadedFiles === false && <label htmlFor="files">Selecionar Arquivos</label> }
 
-				<SearchBox>
-					<input type="search" />
+					{ uploadedFiles === true && <button onClick={sendFile}>Enviar</button> }
+				<input type="file" multiple id="files" style={{ display: 'none' }} onChange={() => setUploadedFiles(true)} ref={filesElement} />
+			</UploadFiles>
 
-					<button>{ <FcSearch style={{ width: 20 }} /> }</button>
-				</SearchBox>
+			{ uploadedFiles && <FileRemove onClick={() => setUploadedFiles(false)} >X</FileRemove> }
 
-				<SearchBar type="search" name="myFile" />
-			</FinancialAccount>
+			<Container>
 
-			<DataReconciliation>
-				<h3>Data Conciliação</h3>
+				<Toaster
+				  position="bottom-bottom-right"
+				/>
 
-				<input type="date" />
-			</DataReconciliation>
+				<FinancialAccount>
+					<h3>Conta Financeira</h3>
 
-			<MovementPeriod>
-				<h3>Período de Movimento</h3>
+					<SearchBox>
+						<input type="search" />
 
-				<BoxDate>
-					<input type="date" ref={dateOne} />
+						<button>{ <FcSearch style={{ width: 20 }} /> }</button>
+					</SearchBox>
+
+					<SearchBar type="search" name="myFile" />
+				</FinancialAccount>
+
+				<DataReconciliation>
+					<h3>Data Conciliação</h3>
+
+					<input type="date" />
+				</DataReconciliation>
+
+				<MovementPeriod>
+					<h3>Período de Movimento</h3>
+
+					<BoxDate>
+						<input type="date" ref={dateOne} />
+						
+						<p>a</p>
+						
+						<input type="date" ref={dateTwo} />
+					</BoxDate>
+
+				</MovementPeriod>
+
+				<Reconcile>
+					<h3>Conciliar</h3>
+
+						<select>
+							<option>Movimento</option>
+							<option>2</option>
+							<option>3</option>
+						</select>
 					
-					<p>a</p>
-					
-					<input type="date" ref={dateTwo} />
-				</BoxDate>
+				</Reconcile>
 
-				<div>
-					<label htmlFor="files"><AiFillFileAdd /></label> 
-					<button onClick={sendFile} >Enviar</button>
-					<input type="file" multiple id="files" style={{ display: 'none' }} ref={filesElement} />
-				</div>
-			</MovementPeriod>
+				<Consult onClick={ConsultPeriod} >
+					<ImBinoculars />
 
-			<Reconcile>
-				<h3>Conciliar</h3>
+					<p>Consultar</p>
+				</Consult>
 
-					<select>
-						<option>Movimento</option>
-						<option>2</option>
-						<option>3</option>
-					</select>
-				
-			</Reconcile>
-
-			<Consult onClick={ConsultPeriod} >
-				<ImBinoculars />
-
-				<p>Consultar</p>
-			</Consult>
-
-		</Container>
+			</Container>
+		</>
 	)
 }

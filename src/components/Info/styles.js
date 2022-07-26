@@ -7,7 +7,6 @@ export const FinancialData = styled.div `
 	margin-top: 5px;
 	align-self: center;
 	display: flex;
-	gap: 155px;
 
 	background-color: #A8A8A0;
 `
@@ -16,12 +15,11 @@ export const BoxOne = styled.div `
 	height: 100%;
 
 	display: flex;
-	align-items: center;
-	gap: 80px;
-	margin-left: 10px;
+	justify-content: center;
+	gap: 60px;
 
 	div {
-		font-size: 12px;
+		font-size: 13px;
 		font-weight: 700;
 
 		display: flex;
@@ -49,11 +47,11 @@ export const BoxTwo = styled.div `
 	height: 100%;
 
 	display: flex;
-	align-items: center;
+	justify-content: center;
 	gap: 60px;
 
 	div {
-		font-size: 12px;
+		font-size: 13px;
 		font-weight: 700;
 
 		display: flex;
@@ -126,7 +124,7 @@ export const FinalBalance = styled.div `
 	font-size: 14px;
 	font-weight: 600;
 
-	align-self: flex-end;
+	align-self: center;
 `
 
 export const Value = styled.div `
@@ -137,7 +135,7 @@ export const Value = styled.div `
 
 	display: flex;
 	justify-content: flex-end;
-	margin-top: 2px;
+	margin: 3px 0  2px 0;
 	padding-right: 2px;
 	
 	color: grey;

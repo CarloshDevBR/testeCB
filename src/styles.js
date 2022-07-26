@@ -12,8 +12,8 @@ export const Container = styled.div `
 `
 
 export const Painel = styled.div `
-	width: 99%;
-	height: 95%;
+	width: 99.5%;
+	height: 97%;
 
 	display: flex;
 	flex-direction: column;

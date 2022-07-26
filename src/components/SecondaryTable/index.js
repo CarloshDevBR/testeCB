@@ -2,6 +2,8 @@ import { Titles, Data, Block } from './styles.js'
 
 import { useData } from '../../hooks/DataContext.js'
 
+import Moment from 'moment'
+
 export default function Table() {
 	const { data } = useData()
 
@@ -47,7 +49,7 @@ export default function Table() {
 								<td>{info.banco}</td>
 							</tr>
 							<tr style={{ width: 70 }} >
-								<td>{info.data_transacao}</td>
+								<td>{Moment(info.data_transacao).format('DD-MM-YYYY')}</td>
 							</tr>
 							<tr style={{ width: 68, justifyContent: 'flex-end' }} >
 								<td>{info.valor}</td>
@@ -78,7 +80,7 @@ export default function Table() {
 							<tr style={{ width: 68, justifyContent: 'flex-start', paddingLeft: 4 }} >
 								<td></td>
 							</tr>
-							<tr style={{ width: 181 }}>
+							<tr style={{ width: 235 }}>
 								<td></td>
 							</tr>
 						</Data>
