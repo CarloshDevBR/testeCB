@@ -25,7 +25,7 @@ export default function Table() {
 					<tr style={{ paddingRight: 175 }} >
 						<td>Descrição</td>
 					</tr>
-					<tr style={{ paddingLeft: 10, paddingRight: 10 }} >
+					<tr style={{ paddingLeft: 9, paddingRight: 9 }} >
 						<td>Conciliar</td>
 					</tr>
 				</table>
@@ -50,7 +50,7 @@ export default function Table() {
 							<tr style={{ width: 235, justifyContent: 'flex-start' }} >
 								<td></td>
 							</tr>
-							<tr style={{ width: 72 }}>
+							<tr style={{ width: 71 }}>
 								<td></td>
 							</tr>
 						</Data>
@@ -75,7 +75,7 @@ export default function Table() {
 							<tr style={{ width: 235 }} >
 								<td></td>
 							</tr>
-							<tr style={{ width: 72 }}>
+							<tr style={{ width: 71 }}>
 								<td></td>
 							</tr>
 						</Data>
